@@ -1,17 +1,17 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Layout from './components/layout/Layout';
+import HomePage from './components/pages/HomePage';
 import CustomThemeProvider from './CustomThemeProvider';
-
-function HomePageContent() {
-  return <h1>THE MAIN CONTENT HOME PAGE</h1>;
-}
 
 function App() {
   return (
     <CustomThemeProvider>
-      <Layout>
-        <HomePageContent />
-      </Layout>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
     </CustomThemeProvider>
   );
 }
