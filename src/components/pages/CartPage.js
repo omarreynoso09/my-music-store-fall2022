@@ -1,12 +1,14 @@
 import { CreditCard, Delete, Home } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../contexts/cartContext";
+import { emptyCart } from "../redux/reducer/cartSlice";
 import CartItem from "../CartItem";
 import Layout from "../layout/Layout";
 
 function CartPage() {
-  const { shoppingCart, emptyCart } = useCart();
+  const shoppingCart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const total = shoppingCart.reduce(
@@ -42,9 +44,9 @@ function CartPage() {
           variant="contained"
           startIcon={<Delete />}
           sx={{ width: "200px" }}
-          onClick={emptyCart}
+          onClick={() => dispatch(emptyCart())}
         >
-          <Box>Empty Cart</Box>
+          <Box>Empty Cart Page</Box>
         </Button>
         <Button
           variant="contained"
@@ -52,7 +54,7 @@ function CartPage() {
           sx={{ width: "200px" }}
           onClick={() => navigate("/")}
         >
-          <Box>Home Page</Box>
+          <Box>Home </Box>
         </Button>
       </Box>
     </Layout>
